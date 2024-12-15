@@ -33,7 +33,6 @@ def tryregion(ptype,x,y,garden,walklog,borderlog):
                 a += da
                 p += dp
             if p>0:
-                #it's border plant
                 borderlog.add((x,y))
                 pass
         #print(f'coords ({x},{y}) and vals {da}, {dp}')
@@ -49,8 +48,20 @@ def getPlantInfoFromNextRegion(inp,wr):
                 return (inp[x][y],x,y)
     raise Exception("end")
 
+
+def getFenceBulks(borderpoints):
+    print(borderpoints)
+    rows = dict([(x,[]) for (x,y) in borderpoints])
+    cols = dict([(y,[]) for (x,y) in borderpoints])
+    for (x,y) in borderpoints:
+        rows[x].append(y)
+        cols[y].append(x)
+    print('by rows',rows)
+    print('by cols', cols)
+    
+    
 inp = loadinput('input-test.txt')
-inp = loadinput('input.txt')
+#inp = loadinput('input.txt')
 inp = [ [x for x in line] for line in inp]
 #solution 1
 sol = []
@@ -65,9 +76,12 @@ try:
         print(f'border plants {borderplants}')
         sol.append(res)
         walkedregions = walkedregions.union(temp)
+        borderbulks = getFenceBulks(borderplants)
         break
 except:
     pass
+
+    
 print('solution1',sum([a*b for a,b in sol]))
 
 #solution 2
