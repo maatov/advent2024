@@ -26,7 +26,8 @@ def blinkvec(vec,iters):
         vecd = tmp
         #print(f' after {i} iter, partial sum is {sum([vecd[x] for x in vecd])}')
     count = sum([vecd[x] for x in vecd])
-    #print(count,len(vecd),vecd)
+    #print(vecd)
+    #print(count,len(vecd))
     return count
 
 inputtext = "125 17"
